@@ -20,3 +20,21 @@ class CustomPagination(pagination.PageNumberPagination):
             'results': data
         })
 ```
+### page size 전역변수로 설정 후 가져와서 쓰기
+- settings   
+```python
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
+```
+- views   
+```python
+from rest_framework.pagination import PageNumberPagination
+
+class ListPagination(PageNumberPagination):
+    
+    page_size_query_param = 'page_size'
+    ...
+```
+
